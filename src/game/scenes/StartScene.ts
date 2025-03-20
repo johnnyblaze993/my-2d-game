@@ -5,18 +5,12 @@ export default class StartScene extends Phaser.Scene {
     super({ key: "StartScene" });
   }
 
-  preload() {
-    this.load.image("startButton", "/start-button.png");
-    this.load.image("slowpoke", "/Slowpoke-Pokemon-PNG-Picture.png");
-    this.load.image("ekans", "/ekans.png");
-  }
-
   create() {
-    const startButton = this.add.image(400, 300, "startButton").setInteractive();
+    const startButton = this.add.text(400, 300, "Start Game", { fontSize: "32px", color: "#fff" }).setOrigin(0.5).setInteractive();
     startButton.on("pointerdown", () => {
       this.scene.start("MainScene");
     });
 
-    this.add.text(400, 200, "My 2D Game", { fontSize: "48px", color: "#fff" }).setOrigin(0.5);
+    this.add.text(400, 200, "Jumpy Jump", { fontSize: "48px", color: "#fff" }).setOrigin(0.5);
   }
 }
