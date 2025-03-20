@@ -12,6 +12,10 @@ export default class MainScene extends Phaser.Scene {
 
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
 
+  constructor() {
+    super({ key: "MainScene" });
+  }
+
   preload() {
     this.load.image("slowpoke", "/Slowpoke-Pokemon-PNG-Picture.png");
     this.load.image("ekans", "/ekans.png");
