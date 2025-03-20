@@ -1,5 +1,5 @@
 
-import Game from './Game'
+import Game from './components/Game'
 
 const App = () => {
   return (
