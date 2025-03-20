@@ -37,6 +37,7 @@ export default class MainScene extends Phaser.Scene {
         this.heartCount--;
         this.hearts.setText("❤️".repeat(this.heartCount));
         this.lastHitTime = currentTime;
+        this.slowpoke.flash();
       }
     }
   }
