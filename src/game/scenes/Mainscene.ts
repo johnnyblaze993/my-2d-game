@@ -22,6 +22,10 @@ export default class MainScene extends Phaser.Scene {
   }
 
   create() {
+    // Reset game state
+    this.heartCount = 3;
+    this.lastHitTime = 0;
+
     this.slowpoke = new Slowpoke(this, 400, 500);
     this.ekans = new Ekans(this, 800, 480);
     
