@@ -39,6 +39,9 @@ export default class MainScene extends Phaser.Scene {
         this.lastHitTime = currentTime;
         this.slowpoke.flash();
       }
+      if (this.heartCount === 0) {
+        this.scene.start("GameOverScene");
+      }
     }
   }
 

@@ -1,5 +1,7 @@
 import Phaser from "phaser";
 import MainScene from "./scenes/Mainscene";
+import StartScene from "./scenes/StartScene";
+import GameOverScene from "./scenes/GameOverScene";
 
 const gameConfig: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
@@ -12,7 +14,7 @@ const gameConfig: Phaser.Types.Core.GameConfig = {
       gravity: { y: 500, x: 0},
     },
   },
-  scene: MainScene,
+  scene: [StartScene, MainScene, GameOverScene],
 };
 
 export default gameConfig;
