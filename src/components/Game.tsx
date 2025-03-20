@@ -6,6 +6,7 @@ const Game = () => {
   const gameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    console.log("Game component mounted");
     if (!gameRef.current) return;
 
     const game = new Phaser.Game({
