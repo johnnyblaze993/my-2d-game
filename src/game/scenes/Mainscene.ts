@@ -9,6 +9,8 @@ export default class MainScene extends Phaser.Scene {
   heartCount: number = 3;
   lastHitTime: number = 0;
   hitCooldown: number = 2000; // 2s cooldown
+  timerText!: Phaser.GameObjects.Text;
+  startTime!: number;
 
   cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
 
@@ -34,6 +36,10 @@ export default class MainScene extends Phaser.Scene {
     // Hearts UI
     this.hearts = this.add.text(20, 20, "❤️❤️❤️", { fontSize: "32px", color: "red" });
 
+    // Timer UI
+    this.timerText = this.add.text(20, 60, "Time: 00:00", { fontSize: "32px", color: "#fff" });
+    this.startTime = this.time.now;
+
     // Collision Detection
     this.physics.add.overlap(this.slowpoke, this.ekans, this.handleCollision, undefined, this);
   }
@@ -48,6 +54,10 @@ export default class MainScene extends Phaser.Scene {
         this.slowpoke.flash();
       }
       if (this.heartCount === 0) {
+        const elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+        const bestTimes = JSON.parse(sessionStorage.getItem("bestTimes") || "[]");
+        bestTimes.push(elapsedTime);
+        sessionStorage.setItem("bestTimes", JSON.stringify(bestTimes));
         this.scene.start("GameOverScene");
       }
     }
@@ -56,5 +66,9 @@ export default class MainScene extends Phaser.Scene {
   update() {
     this.slowpoke.handleInput(this.cursors);
     this.ekans.update();
+    const elapsedTime = Math.floor((this.time.now - this.startTime) / 1000);
+    const minutes = Math.floor(elapsedTime / 60).toString().padStart(2, '0');
+    const seconds = (elapsedTime % 60).toString().padStart(2, '0');
+    this.timerText.setText(`Time: ${minutes}:${seconds}`);
   }
 }
