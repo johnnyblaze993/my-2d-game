@@ -27,6 +27,7 @@ export default class MainScene extends Phaser.Scene {
     // Reset game state
     this.heartCount = 3;
     this.lastHitTime = 0;
+    this.startTime = this.time.now;
 
     this.slowpoke = new Slowpoke(this, 400, 500);
     this.ekans = new Ekans(this, 800, 480);
@@ -38,7 +39,6 @@ export default class MainScene extends Phaser.Scene {
 
     // Timer UI
     this.timerText = this.add.text(20, 60, "Time: 00:00", { fontSize: "32px", color: "#fff" });
-    this.startTime = this.time.now;
 
     // Collision Detection
     this.physics.add.overlap(this.slowpoke, this.ekans, this.handleCollision, undefined, this);
